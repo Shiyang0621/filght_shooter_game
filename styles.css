@@ -1,0 +1,196 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* 游戏容器 */
+.game-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+/* 画布样式 */
+#gameCanvas {
+    border: 3px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.8);
+}
+
+/* 游戏UI样式 */
+#gameUI {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    z-index: 100;
+    display: flex;
+    gap: 30px;
+}
+
+#score, #level {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+}
+
+/* 游戏结束界面 */
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #171616;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+}
+
+/* 开始按钮 */
+.start-button {
+    margin-top: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    background: linear-gradient(45deg, #00ccff, #0066ff);
+    border: none;
+    border-radius: 25px;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Orbitron', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.start-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+/* 生命值条样式 */
+.health-bar {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 200px;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.health-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #00ff00, #00ffaa);
+    transition: width 0.3s ease;
+}
+
+/* 暂停菜单 */
+.pause-menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    text-align: center;
+    display: none;
+}
+
+.pause-menu h2 {
+    color: #00ffff;
+    margin-bottom: 20px;
+}
+
+/* 动画效果 */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.4); }
+    100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2); }
+}
+
+/* 得分动画 */
+@keyframes scorePopup {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.score-popup {
+    animation: scorePopup 0.5s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 800px) {
+    #gameCanvas {
+        width: 100%;
+        height: auto;
+    }
+    
+    #gameUI {
+        font-size: 14px;
+    }
+}
+
+/* 控制说明 */
+.controls-info {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    color: rgba(0, 255, 255, 0.7);
+    background: rgba(0, 0, 0, 0.6);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+/* 特效样式 */
+.particle {
+    position: absolute;
+    pointer-events: none;
+    background: rgba(0, 255, 255, 0.5);
+    border-radius: 50%;
+}
+
+/* 武器升级指示器 */
+.power-level {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    gap: 5px;
+}
+
+.power-indicator {
+    width: 15px;
+    height: 15px;
+    background: rgba(0, 255, 255, 0.3);
+    border-radius: 50%;
+}
+
+.power-indicator.active {
+    background: #00ffff;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+} 

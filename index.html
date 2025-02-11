@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>F22 空战游戏</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #000;
+            font-family: Arial, sans-serif;
+        }
+        #gameCanvas {
+            border: 2px solid #333;
+            background: #ffffff;
+        }
+        #gameUI {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #000000;
+            font-size: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="gameUI">
+        <div id="score">分数: 0</div>
+        <div id="level">等级: 1</div>
+    </div>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <script src="gameManager.js"></script>
+    <script src="game.js"></script>
+</body>
+</html> 
