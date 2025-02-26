@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #1a1a1d, #4e4e50);
+    background: linear-gradient(to bottom, #333, #555);
     font-family: 'Roboto', sans-serif;
 }
 
@@ -23,9 +23,9 @@ body {
 
 /* Canvas Style */
 #gameCanvas {
-    border: 3px solid #f5f4f4;
-    background: #ffffff;
-    box-shadow: 0 0 20px rgba(2, 2, 2, 0.5);
+    border: 3px solid #f3eeee;
+    background: #f4f3f3;
+    box-shadow: 0 0 20px rgba(130, 130, 130, 0.5);
 }
 
 /* Game UI Style */
@@ -34,11 +34,11 @@ body {
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    color: #eaeaea;
+    color: #fff;
     font-size: 24px;
     text-align: center;
     z-index: 100;
-    background: rgba(26, 26, 29, 0.8);
+    background: rgba(0, 0, 0, 0.8);
     padding: 10px 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -47,7 +47,7 @@ body {
 #score, #level {
     margin-bottom: 10px;
     font-weight: bold;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 4px rgba(139, 139, 139, 0.7);
 }
 
 /* Game Over Screen */
@@ -89,8 +89,8 @@ body {
 #health-bar {
     width: 200px;
     height: 20px;
-    background: rgba(26, 26, 29, 0.5);
-    border: 2px solid #eaeaea;
+    background: rgba(0, 128, 0, 0.5);
+    border: 2px solid #fff;
     border-radius: 10px;
     overflow: hidden;
     margin: 0 auto;
@@ -99,7 +99,7 @@ body {
 #health-bar-fill {
     height: 100%;
     width: 100%; /* This will be dynamically updated in JavaScript */
-    background: linear-gradient(to right, #76c7c0, #34a0a4);
+    background: linear-gradient(to right, #00ff00, #009900);
     transition: width 0.3s ease;
 }
 
