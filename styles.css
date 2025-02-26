@@ -7,13 +7,12 @@
 
 body {
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     min-height: 100vh;
     background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
-    font-family: 'Orbitron', sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
 }
 
 /* 游戏容器 */
@@ -24,31 +23,29 @@ body {
 
 /* 画布样式 */
 #gameCanvas {
-    border: 3px solid rgba(0, 255, 255, 0.3);
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2),
-                inset 0 0 20px rgba(0, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.8);
+    border: 3px solid #333;
+    background: #000;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 }
 
 /* 游戏UI样式 */
 #gameUI {
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    color: #00ffff;
-    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    color: #fff;
+    font-size: 20px;
+    text-align: center;
     z-index: 100;
-    display: flex;
-    gap: 30px;
 }
 
 #score, #level {
     background: rgba(0, 0, 0, 0.6);
     padding: 10px 20px;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 255, 255, 0.3);
+    border-radius: 10px;
+    margin-bottom: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /* 游戏结束界面 */
@@ -87,21 +84,20 @@ body {
 }
 
 /* 生命值条样式 */
-.health-bar {
-    position: absolute;
-    bottom: 20px;
-    left: 20px;
+#health-bar {
     width: 200px;
     height: 20px;
-    background: rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(0, 255, 255, 0.3);
+    background: rgba(255, 0, 0, 0.3);
+    border: 2px solid #fff;
     border-radius: 10px;
     overflow: hidden;
+    margin: 0 auto;
 }
 
-.health-bar-fill {
+#health-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #00ff00, #00ffaa);
+    width: 100%; /* This will be dynamically updated in JavaScript */
+    background: linear-gradient(to right, #ff0000, #ff7f7f);
     transition: width 0.3s ease;
 }
 
@@ -111,16 +107,17 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.8);
     padding: 30px;
     border-radius: 15px;
-    border: 2px solid rgba(0, 255, 255, 0.3);
+    border: 2px solid #fff;
     text-align: center;
     display: none;
+    color: #fff;
+    z-index: 200;
 }
 
 .pause-menu h2 {
-    color: #00ffff;
     margin-bottom: 20px;
 }
 

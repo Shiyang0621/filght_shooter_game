@@ -24,4 +24,7 @@ class GameManager {
             this.restart(game);
         }
     }
-} 
+}
+
+// Remove or modify this line if the element is not needed
+// document.getElementById('gameOverText').textContent = 'Game Over';  

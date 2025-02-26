@@ -71,6 +71,10 @@ class Player extends GameObject {
         ctx.fillRect(10, 10, (this.health / this.maxHealth) * 200, 20);
         ctx.strokeStyle = '#fff';
         ctx.strokeRect(10, 10, 200, 20);
+
+        // Update health bar
+        const healthBarFill = document.getElementById('health-bar-fill');
+        healthBarFill.style.width = `${(this.health / this.maxHealth) * 100}%`;
     }
 
     shoot() {
@@ -189,7 +193,21 @@ class Enemy extends GameObject {
         super(x, -30, 30, 30, 2);
         this.type = type;
         this.health = type === 'boss' ? 100 : 1;
-        
+
+        if (type === 'tank') {
+            this.image = new Image();
+            this.image.src = 'assets/tank.svg';
+
+            // Add event listeners for image loading
+            this.image.onload = () => {
+                this.imageLoaded = true;
+            };
+            this.image.onerror = () => {
+                console.error('Failed to load image: assets/tank.svg');
+                this.imageLoaded = false;
+            };
+        }
+
         switch(type) {
             case 'fast':
                 this.speed = 4;
@@ -216,21 +234,75 @@ class Enemy extends GameObject {
     }
 
     draw(ctx) {
+        ctx.save();
+        ctx.beginPath();
+
         switch(this.type) {
             case 'normal':
-                ctx.fillStyle = '#e74c3c';
+                // Design as a fighter jet
+                ctx.fillStyle = '#2c3e50';
+                ctx.shadowColor = '#34495e';
+                ctx.shadowBlur = 10;
+                ctx.moveTo(this.x + this.width / 2, this.y);
+                ctx.lineTo(this.x + this.width, this.y + this.height / 2);
+                ctx.lineTo(this.x + this.width / 2, this.y + this.height);
+                ctx.lineTo(this.x, this.y + this.height / 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
                 break;
             case 'fast':
-                ctx.fillStyle = '#f1c40f';
+                // Design as a stealth bomber
+                ctx.fillStyle = '#7f8c8d';
+                ctx.shadowColor = '#95a5a6';
+                ctx.shadowBlur = 15;
+                ctx.moveTo(this.x + this.width / 2, this.y);
+                ctx.lineTo(this.x + this.width, this.y + this.height / 3);
+                ctx.lineTo(this.x + this.width * 3 / 4, this.y + this.height);
+                ctx.lineTo(this.x + this.width / 4, this.y + this.height);
+                ctx.lineTo(this.x, this.y + this.height / 3);
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 2;
+                ctx.stroke();
                 break;
             case 'tank':
-                ctx.fillStyle = '#8e44ad';
+                // Use the SVG image for the tank
+                if (this.imageLoaded) {
+                    ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+                } else {
+                    // Fallback if the image is not yet loaded or failed to load
+                    ctx.fillStyle = '#27ae60';
+                    ctx.fillRect(this.x, this.y + this.height / 4, this.width, this.height / 2);
+                    ctx.fillRect(this.x + this.width / 4, this.y, this.width / 2, this.height / 4);
+                    ctx.strokeStyle = '#fff';
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(this.x, this.y + this.height / 4, this.width, this.height / 2);
+                    ctx.strokeRect(this.x + this.width / 4, this.y, this.width / 2, this.height / 4);
+                }
                 break;
             case 'boss':
+                // Design as a large military aircraft
                 ctx.fillStyle = '#c0392b';
+                ctx.shadowColor = '#e74c3c';
+                ctx.shadowBlur = 20;
+                ctx.moveTo(this.x + this.width / 2, this.y);
+                ctx.lineTo(this.x + this.width, this.y + this.height / 3);
+                ctx.lineTo(this.x + this.width * 3 / 4, this.y + this.height);
+                ctx.lineTo(this.x + this.width / 4, this.y + this.height);
+                ctx.lineTo(this.x, this.y + this.height / 3);
+                ctx.closePath();
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 5;
+                ctx.stroke();
                 break;
         }
-        super.draw(ctx);
+
+        ctx.restore();
     }
 
     damage() {
@@ -272,6 +344,8 @@ class Game {
         this.keys = {};
         this.frameCount = 0;
         this.particles = [];
+        this.spawnInterval = 100; // Initial spawn interval
+        this.lastSpawnTime = 0; // Track the last spawn time
 
         this.setupEventListeners();
         this.gameLoop();
@@ -310,7 +384,7 @@ class Game {
     }
 
     spawnPowerUp(x, y) {
-        if (Math.random() < 0.1) {
+        if (Math.random() < 0.3) {
             const type = Math.random() < 0.5 ? 'health' : 'power';
             this.powerUps.push(new PowerUp(x, y, type));
         }
@@ -328,8 +402,9 @@ class Game {
         this.bullets = this.bullets.filter(bullet => !bullet.update());
 
         // 生成敌人
-        if (this.frameCount % Math.max(30 - this.level, 10) === 0) {
+        if (this.frameCount - this.lastSpawnTime > this.spawnInterval) {
             this.spawnEnemy();
+            this.lastSpawnTime = this.frameCount;
         }
 
         // 更新敌人
@@ -343,6 +418,9 @@ class Game {
 
         // 更新等级
         this.level = Math.floor(this.score / 1000) + 1;
+
+        // Adjust spawn interval based on level
+        this.spawnInterval = Math.max(10, 100 - this.level * 5);
 
         // 更新粒子效果
         this.particles = this.particles.filter(particle => {

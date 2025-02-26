@@ -2,6 +2,9 @@
 <html>
 <head>
     <title>F22 空战游戏</title>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             margin: 0;
@@ -10,7 +13,7 @@
             align-items: center;
             min-height: 100vh;
             background: #000;
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
         }
         #gameCanvas {
             border: 2px solid #333;
@@ -31,8 +34,12 @@
     <div id="gameUI">
         <div id="score">分数: 0</div>
         <div id="level">等级: 1</div>
+        <div id="health-bar">
+            <div id="health-bar-fill"></div>
+        </div>
     </div>
     <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="gameOverText" style="display: none;">Game Over</div>
     <script src="gameManager.js"></script>
     <script src="game.js"></script>
 </body>
