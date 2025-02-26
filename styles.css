@@ -1,4 +1,4 @@
-/* 全局样式重置 */
+/* Global Style Reset */
 * {
     margin: 0;
     padding: 0;
@@ -11,66 +11,68 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to bottom, #0f2027, #203a43, #2c5364);
+    background: linear-gradient(to bottom, #1a1a1d, #4e4e50);
     font-family: 'Roboto', sans-serif;
 }
 
-/* 游戏容器 */
+/* Game Container */
 .game-container {
     position: relative;
     margin-top: 20px;
 }
 
-/* 画布样式 */
+/* Canvas Style */
 #gameCanvas {
-    border: 3px solid #333;
-    background: #000;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 3px solid #f5f4f4;
+    background: #ffffff;
+    box-shadow: 0 0 20px rgba(2, 2, 2, 0.5);
 }
 
-/* 游戏UI样式 */
+/* Game UI Style */
 #gameUI {
     position: absolute;
     top: 10px;
     left: 50%;
     transform: translateX(-50%);
-    color: #fff;
-    font-size: 20px;
+    color: #eaeaea;
+    font-size: 24px;
     text-align: center;
     z-index: 100;
+    background: rgba(26, 26, 29, 0.8);
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 #score, #level {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 10px 20px;
-    border-radius: 10px;
     margin-bottom: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-/* 游戏结束界面 */
+/* Game Over Screen */
 .game-over {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    color: #171616;
-    background: rgba(0, 0, 0, 0.8);
+    color: #eaeaea;
+    background: rgba(26, 26, 29, 0.9);
     padding: 40px;
     border-radius: 20px;
-    border: 2px solid rgba(0, 255, 255, 0.3);
+    border: 2px solid #eaeaea;
 }
 
-/* 开始按钮 */
+/* Start Button */
 .start-button {
     margin-top: 20px;
     padding: 15px 30px;
     font-size: 18px;
-    background: linear-gradient(45deg, #00ccff, #0066ff);
+    background: linear-gradient(45deg, #3a3a3d, #5a5a5d);
     border: none;
     border-radius: 25px;
-    color: rgb(0, 0, 0);
+    color: #eaeaea;
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'Orbitron', sans-serif;
@@ -80,15 +82,15 @@ body {
 
 .start-button:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+    box-shadow: 0 0 20px rgba(234, 234, 234, 0.5);
 }
 
-/* 生命值条样式 */
+/* Health Bar Style */
 #health-bar {
     width: 200px;
     height: 20px;
-    background: rgba(255, 0, 0, 0.3);
-    border: 2px solid #fff;
+    background: rgba(26, 26, 29, 0.5);
+    border: 2px solid #eaeaea;
     border-radius: 10px;
     overflow: hidden;
     margin: 0 auto;
@@ -97,23 +99,23 @@ body {
 #health-bar-fill {
     height: 100%;
     width: 100%; /* This will be dynamically updated in JavaScript */
-    background: linear-gradient(to right, #ff0000, #ff7f7f);
+    background: linear-gradient(to right, #76c7c0, #34a0a4);
     transition: width 0.3s ease;
 }
 
-/* 暂停菜单 */
+/* Pause Menu */
 .pause-menu {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(26, 26, 29, 0.8);
     padding: 30px;
     border-radius: 15px;
-    border: 2px solid #fff;
+    border: 2px solid #eaeaea;
     text-align: center;
     display: none;
-    color: #fff;
+    color: #eaeaea;
     z-index: 200;
 }
 
@@ -121,14 +123,14 @@ body {
     margin-bottom: 20px;
 }
 
-/* 动画效果 */
+/* Animation Effects */
 @keyframes glow {
-    0% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2); }
-    50% { box-shadow: 0 0 20px rgba(0, 255, 255, 0.4); }
-    100% { box-shadow: 0 0 5px rgba(0, 255, 255, 0.2); }
+    0% { box-shadow: 0 0 5px rgba(234, 234, 234, 0.2); }
+    50% { box-shadow: 0 0 20px rgba(234, 234, 234, 0.4); }
+    100% { box-shadow: 0 0 5px rgba(234, 234, 234, 0.2); }
 }
 
-/* 得分动画 */
+/* Score Animation */
 @keyframes scorePopup {
     0% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.5); opacity: 0.7; }
@@ -139,7 +141,7 @@ body {
     animation: scorePopup 0.5s ease;
 }
 
-/* 响应式设计 */
+/* Responsive Design */
 @media (max-width: 800px) {
     #gameCanvas {
         width: 100%;
@@ -151,27 +153,27 @@ body {
     }
 }
 
-/* 控制说明 */
+/* Control Info */
 .controls-info {
     position: absolute;
     bottom: 20px;
     right: 20px;
-    color: rgba(0, 255, 255, 0.7);
-    background: rgba(0, 0, 0, 0.6);
+    color: rgba(234, 234, 234, 0.7);
+    background: rgba(26, 26, 29, 0.6);
     padding: 10px;
     border-radius: 10px;
     font-size: 14px;
 }
 
-/* 特效样式 */
+/* Particle Effects */
 .particle {
     position: absolute;
     pointer-events: none;
-    background: rgba(0, 255, 255, 0.5);
+    background: rgba(234, 234, 234, 0.5);
     border-radius: 50%;
 }
 
-/* 武器升级指示器 */
+/* Power Level Indicator */
 .power-level {
     position: absolute;
     right: 20px;
@@ -183,11 +185,11 @@ body {
 .power-indicator {
     width: 15px;
     height: 15px;
-    background: rgba(0, 255, 255, 0.3);
+    background: rgba(234, 234, 234, 0.3);
     border-radius: 50%;
 }
 
 .power-indicator.active {
-    background: #00ffff;
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
+    background: #eaeaea;
+    box-shadow: 0 0 10px rgba(234, 234, 234, 0.8);
 } 
